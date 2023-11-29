@@ -16,7 +16,7 @@ dependencies {
     runtimeOnly 'io.grpc:grpc-netty-shaded:1.49.2'
     implementation 'io.grpc:grpc-protobuf:1.49.2'
     implementation 'io.grpc:grpc-stub:1.49.2'
-
+    implementation 'org.xerial:sqlite-jdbc:3.34.0'
 
 }
 
