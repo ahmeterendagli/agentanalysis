@@ -2,9 +2,9 @@ package org.globalpbx.grpcserver;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import org.globalpbx.grpcservice.CallReportService;
 import org.globalpbx.grpcservice.OperatorService;
 import org.globalpbx.repository.AgentRepository;
-import org.globalpbx.service.UserService;
 
 import java.io.IOException;
 
@@ -16,8 +16,9 @@ public class GRPCServer {
 
         Server server =
                 ServerBuilder.forPort(9090)
-                        .addService(new UserService())
-                        .addService(new OperatorService(new AgentRepository())).build();
+                        .addService(new OperatorService(new AgentRepository()))
+                        .addService(new CallReportService(new AgentRepository()))
+                        .build();
 
         server.start();
 

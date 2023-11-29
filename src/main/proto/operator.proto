@@ -3,7 +3,7 @@ syntax = "proto3";
 option java_package = "org.globalpbx.grpc";
 
 service Operator {
-  rpc save(OperatorInfo) returns (SResult);
+  rpc save(OperatorInfo) returns (SResultOperator);
 }
 
 message OperatorInfo{
@@ -24,7 +24,7 @@ message OperatorInfo{
 
 }
 
-message SResult{
+message SResultOperator{
   string responsemessage = 1;
   int32 responseCode = 2;
 }

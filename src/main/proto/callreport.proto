@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option java_package = "org.globalpbx.grpc";
+
+service CallReport {
+  rpc save(CallReportInfo) returns (SResult);
+}
+
+message CallReportInfo{
+  // UUID
+  string callreportid = 1;
+  // TIMESTAMP WITHOUT TIME ZONE
+  string callanswertime = 2;
+  // BIGINT
+  int64 callanswertoendseconds = 3;
+  // TIMESTAMP WITHOUT TIME ZONE
+  string callendtime = 4;
+  // VARCHAR(150)
+  string callid = 5;
+  // TIMESTAMP WITHOUT TIME ZONE
+  string callstarttime = 6;
+  // BIGINT
+  int64 callstarttoendseconds = 7;
+  // INTEGER
+  int32 calltypeid = 8;
+  // VARCHAR(50)
+  string callernumber = 9;
+  // BOOLEAN
+  bool closesystem = 10;
+  // UUID
+  string communicationvoiceid = 11;
+  // VARCHAR(50)
+  string dialednumber = 12;
+  // VARCHAR(150)
+  string groupid = 13;
+  // VARCHAR(150)
+  string hangupcausesip = 14;
+  // INTEGER
+  int32 hangupcausesipcode = 15;
+  // INTEGER
+  int32 hangupid = 16;
+  // VARCHAR(150)
+  string info1 = 17;
+  // VARCHAR(150)
+  string info2 = 18;
+  // INTEGER
+  int32 modulereportid = 19;
+  // TIMESTAMP WITHOUT TIME ZONE
+  string ringtime = 20;
+  // UUID
+  string trunkid = 21;
+  // BOOLEAN
+  bool transfer = 22;
+  // BOOLEAN
+  bool missedcall = 23;
+  // INTEGER
+  int32 callerinternalid = 24;
+  // INTEGER
+  int32 dialedinternalid = 25;
+  // VARCHAR(70)
+  string dialednumberwithformat = 26;
+  // BOOLEAN
+  bool laststatus = 27;
+
+}
+
+message SResult{
+  string responsemessage = 1;
+  int32 responseCode = 2;
+}

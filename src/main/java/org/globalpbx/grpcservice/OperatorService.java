@@ -14,10 +14,7 @@ public class OperatorService extends OperatorGrpc.OperatorImplBase {
     @Override
     public void save(OperatorDto.OperatorInfo request, StreamObserver<OperatorDto.SResult> responseObserver) {
 
-        agentRepository.connect();
-        agentRepository.createAgentTable();
-        agentRepository.addAgentInfo("eren","eren.gmail.com");
-        agentRepository.getAllUsers();
+
         System.out.println(request.getAnsweredCall());
         OperatorDto.SResult.Builder response = new OperatorDto.SResult.Builder();
 
