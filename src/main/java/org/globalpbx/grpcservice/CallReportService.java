@@ -5,7 +5,7 @@ import org.globalpbx.repository.AgentRepository;
 
 public class CallReportService extends CallReportGrpc.CallReportImplBase {
 
-    private AgentRepository agentRepository;
+    private final AgentRepository agentRepository;
 
     public CallReportService(AgentRepository agentRepository) {
         this.agentRepository = agentRepository;
