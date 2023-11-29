@@ -4,7 +4,10 @@ option java_package = "org.globalpbx.grpc";
 
 service CallReport {
   rpc save(CallReportInfo) returns (SResult);
+  rpc getAverageCallAnswerToEndSeconds(Empty) returns (SResult);
 }
+
+
 
 message CallReportInfo{
   // UUID
@@ -67,4 +70,8 @@ message CallReportInfo{
 message SResult{
   string responsemessage = 1;
   int32 responseCode = 2;
+}
+
+message Empty{
+
 }

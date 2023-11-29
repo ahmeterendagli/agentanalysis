@@ -1,8 +1,11 @@
 package org.globalpbx.repository;
 
-import org.globalpbx.grpcservice.CallReportDto;
+import org.globalpbx.dto.CallReportDto;
+import org.globalpbx.grpcservice.CallReport;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AgentRepository {
@@ -60,7 +63,7 @@ public class AgentRepository {
         return conn;
     }
 
-    public void addAgentInfo(CallReportDto.CallReportInfo request) {
+    public void addAgentInfo(CallReport.CallReportInfo request) {
         String insertQuery = "INSERT INTO tblcallreport ("
                 + "callreportid, callanswertime, callanswertoendseconds, callendtime, callid, callstarttime, "
                 + "callstarttoendseconds, calltypeid, callernumber, closesystem, communicationvoiceid, dialednumber, "
@@ -105,23 +108,50 @@ public class AgentRepository {
         }
     }
 
-    /*
-    public List<String> getAllUsers() {
-        List<String> getAllUser = new ArrayList<>();
-        String sql = "SELECT * FROM tblcallreport";
+
+    public List<CallReportDto> getAllCallReport() {
+        List<CallReportDto> callReports = new ArrayList<>();
+        String query = "SELECT * FROM tblcallreport";
 
         try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
+             PreparedStatement pstmt = conn.prepareStatement(query);
              ResultSet rs = pstmt.executeQuery()) {
 
+            while (rs.next()) {
+                CallReportDto callReport = new CallReportDto();
+                callReport.setCallreportid(rs.getString("callreportid"));
+                callReport.setCallanswertime(rs.getString("callanswertime"));
+                callReport.setCallanswertoendseconds(rs.getLong("callanswertoendseconds"));
+                callReport.setCallendtime(rs.getString("callendtime"));
+                callReport.setCallid(rs.getString("callid"));
+                callReport.setCallstarttime(rs.getString("callstarttime"));
+                callReport.setCallstarttoendseconds(rs.getLong("callstarttoendseconds"));
+                callReport.setCalltypeid(rs.getInt("calltypeid"));
+                callReport.setCallernumber(rs.getString("callernumber"));
+                callReport.setClosesystem(rs.getBoolean("closesystem"));
+                callReport.setCommunicationvoiceid(rs.getString("communicationvoiceid"));
+                callReport.setDialednumber(rs.getString("dialednumber"));
+                callReport.setGroupid(rs.getString("groupid"));
+                callReport.setHangupcausesip(rs.getString("hangupcausesip"));
+                callReport.setHangupcausesipcode(rs.getInt("hangupcausesipcode"));
+                callReport.setHangupid(rs.getInt("hangupid"));
+                callReport.setInfo1(rs.getString("info1"));
+                callReport.setInfo2(rs.getString("info2"));
+                callReport.setModulereportid(rs.getInt("modulereportid"));
+                callReport.setRingtime(rs.getString("ringtime"));
+                callReport.setTrunkid(rs.getString("trunkid"));
+                callReport.setTransfer(rs.getBoolean("transfer"));
+                callReport.setMissedcall(rs.getBoolean("missedcall"));
+                callReport.setCallerinternalid(rs.getInt("callerinternalid"));
+                callReport.setDialedinternalid(rs.getInt("dialedinternalid"));
+                callReport.setDialednumberwithformat(rs.getString("dialednumberwithformat"));
+                callReport.setLaststatus(rs.getBoolean("laststatus"));
 
+                callReports.add(callReport);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
         }
-        return getAllUser;
+        return callReports;
     }
-
-     */
-
 }
